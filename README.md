@@ -16,17 +16,17 @@ Update the tasks/group_vars/all.yml file with any variables you'll need to make 
 Each inventory file in /inventories contains hostnames for each node. Each node will be configured to use this hostname for Couchbase. The hostname provided in [cbmain] will be the first node configured with a bucket.
 
 ####Provision the main node:
-<code>ansible-playbook -i inventories/$env tasks/couch-main.yml</code>
+<pre>$ ansible-playbook -i inventories/$env tasks/couch-main.yml</pre>
 
 $env == vagrant, staging, or production
 
 Install as many additional nodes as you need
 --------------------------------------------
 
-In contrast to main node, the hostnames specified in the [cbnode] section will be configured in Couchbase. A Couchbase server will be installed and added to the cluster on all hosts listed in this file.
+In compliment to the main node, the hostnames specified in the [cbnode] section will be configured by this playbook. A Couchbase server will be installed and added to the cluster on all hosts listed in this file.
 
 ####To provision them:
-<code>ansible-playbook -i inventories/$env tasks/couch-node.yml</code>
+<pre>$ ansible-playbook -i inventories/$env tasks/couch-node.yml</pre>
 
 
 Uninstall Couchbase Cluster
