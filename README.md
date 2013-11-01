@@ -20,7 +20,8 @@ Each inventory file in /inventories contains hostnames for each node. Each node 
 
 $env == vagrant, staging, or production
 
-###Install as many additional nodes as you need
+Install as many additional nodes as you need
+--------------------------------------------
 
 In contrast to main node, the hostnames specified in the [cbnode] section will be configured in Couchbase. A Couchbase server will be installed and added to the cluster on all hosts listed in this file.
 
