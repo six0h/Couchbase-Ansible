@@ -2,18 +2,22 @@
 # 
 # Uninstall Couchbase cluster from a single command
 #
-- name: Couchbase Installation
+# @codyhalovich | HootSuite Media Inc.
+# http://www.hootsuite.com/
+#
+
+- name: Couchbase Removal
   hosts: all
   user: ubuntu
   sudo: yes
    
   tasks:
+
   - name: Uninstall Couchbase
     shell: dpkg -r couchbase-server
+
   - name: Delete files (just to have a fresh install)
     file: path=/opt/couchbase/ state=absent
+
   - name: Delete ebs files
     file: path=/ebs1/couchbase/ state=absent
-    
-    
-    

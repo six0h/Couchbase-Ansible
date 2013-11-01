@@ -2,6 +2,9 @@
 # 
 # Install Couchbase cluster nodes
 #
+# @codyhalovich | HootSuite Media Inc.
+# http://www.hootsuite.com/
+#
 
 - name: Couchbase Installation
   hosts: cbnodes

@@ -2,6 +2,9 @@
 # 
 # Install Couchbase cluster main node
 #
+# @codyhalovich | HootSuite Media Inc.
+# http://hootsuite.com
+#
 
 - name: Couchbase Installation
   hosts: cbmain
