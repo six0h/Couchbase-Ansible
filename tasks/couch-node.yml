@@ -1,0 +1,37 @@
+---
+# 
+# Install Couchbase cluster nodes
+#
+
+- name: Couchbase Installation
+  hosts: cbnodes
+  vars_files:
+  - [ group_vars/all.yml ]
+  user: ubuntu
+  sudo: yes
+   
+  tasks:
+
+  - name: download Couchbase package
+    get_url: url=http://packages.couchbase.com/releases/2.2.0/couchbase-server-enterprise_2.2.0_x86_64_openssl098.deb dest=~ubuntu/.
+ 
+  - name: Install dependencies
+    apt: pkg=libssl0.9.8 state=present
+
+  - name: Install Couchbase .deb file on node
+    shell: dpkg -i ~ubuntu/couchbase-server-enterprise_2.2.0_x86_64_openssl098.deb
+     
+  - name: Add data dir to EBS & chown
+    shell: mkdir /ebs1/couchbase && chown couchbase:couchbase /ebs1/couchbase
+
+  - name: Initialize node with data-dir
+    shell: /opt/couchbase/bin/couchbase-cli node-init -c 127.0.0.1:8091 --node-init-data-path=/ebs1/couchbase -u ${admin_user} -p ${admin_password}
+
+  - name: Set hostname for node
+    shell: curl -v -X POST -u Administrator:5up3rm4n 127.0.0.1:8091/node/controller/rename -d hostname=$inventory_hostname
+
+  - name: add node to cluster
+    shell: /opt/couchbase/bin/couchbase-cli server-add -c ${cluster_master}:8091 -u ${admin_user} -p ${admin_password} --server-add=$inventory_hostname:8091 --server-add-username=${admin_user} --server-add-password=${admin_password}
+
+  - name: Rebalance the cluster
+    shell: /opt/couchbase/bin/couchbase-cli rebalance -c ${cluster_master}:8091 -u ${admin_user} -p ${admin_password}      

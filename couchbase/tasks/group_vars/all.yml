@@ -1,0 +1,14 @@
+# Adminisrator user and password
+admin_user: Administrator
+admin_password: 5up3rm4n
+
+# Cluster master hostname
+cluster_master: couchbase1.hootsuite.com
+
+# ram quota for the cluster
+cluster_ram_quota: 6144
+
+# bucket and replicas
+bucket_name: autocomplete
+bucket_ram_quota: 3096
+num_replicas: 1 

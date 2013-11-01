@@ -1,0 +1,5 @@
+{% for host in groups['couchbase-nodes'] %}
+sudo chown couchbase:couchbase /ebs1/couchbase
+/opt/couchbase/bin/couchbase-cli node-init -c 127.0.0.1:8091 --node-init-data-path=/ebs1/couchbase -u ${admin_user} -p ${admin_password}
+curl -v -X POST -u Administrator:5up3rm4n http://{{ host }}:9000/node/controller/rename -d hostname={{ host }}
+{% endfor %}
