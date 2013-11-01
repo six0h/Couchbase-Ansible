@@ -3,7 +3,7 @@ admin_user: Administrator
 admin_password: 5up3rm4n
 
 # Cluster master hostname
-cluster_master: couchbase1.hootsuite.com
+cluster_master: couchbase1vagrant.owls.hootd.com
 
 # ram quota for the cluster
 cluster_ram_quota: 6144
