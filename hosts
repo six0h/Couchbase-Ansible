@@ -1,6 +1,0 @@
-[couchbase-main]
-ubuntu@couchbase1.hootsuite.com
-
-[couchbase-nodes]
-ubuntu@couchbase2.hootsuite.com
-ubuntu@couchbase3.hootsuite.com
