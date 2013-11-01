@@ -9,7 +9,7 @@
 - name: Couchbase Installation
   hosts: cbnodes
   vars_files:
-  - [ group_vars/all.yml ]
+  - [ ../vars/all.yml ]
   user: ubuntu
   sudo: yes
    
@@ -24,8 +24,11 @@
   - name: Install Couchbase .deb file on node
     shell: dpkg -i ~ubuntu/couchbase-server-enterprise_2.2.0_x86_64_openssl098.deb
      
-  - name: Add data dir to EBS & chown
-    shell: mkdir /ebs1/couchbase && chown couchbase:couchbase /ebs1/couchbase
+  - name: Add data dir to EBS
+    file: path=/ebs1/couchbase state=present
+     
+  - name: chown dir to couchbase
+    shell: chown couchbase:couchbase /ebs1/couchbase
 
   - name: Initialize node with data-dir
     shell: /opt/couchbase/bin/couchbase-cli node-init -c 127.0.0.1:8091 --node-init-data-path=/ebs1/couchbase -u ${admin_user} -p ${admin_password}
